@@ -46,7 +46,7 @@ import javax.xml.transform.stream.StreamSource;
  *     desc  : utils about log
  * </pre>
  */
-public final class LogUtils {
+final class LogUtils {
 
     public static final int V = Log.VERBOSE;
     public static final int D = Log.DEBUG;

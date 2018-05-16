@@ -29,7 +29,7 @@ import java.lang.ref.WeakReference;
  *     desc  : utils about toast
  * </pre>
  */
-public final class ToastUtils {
+final class ToastUtils {
 
     private static final int     COLOR_DEFAULT = 0xFEFFFFFF;
     private static final Handler HANDLER       = new Handler(Looper.getMainLooper());
