@@ -2,7 +2,7 @@
 
 Gradle:
 ```groovy
-implementation 'com.blankj:utilcode:1.15.1'
+implementation 'com.blankj:utilcode:1.17.2'
 ```
 
 
@@ -41,6 +41,8 @@ finishAllActivitiesExceptNewest
 
 * ### About App -> [AppUtils.java][app.java] -> [Demo][app.demo]
 ```
+registerAppStatusChangedListener
+unregisterAppStatusChangedListener
 installApp
 installAppSilent
 uninstallApp
@@ -88,7 +90,54 @@ getNavBarColor
 isNavBarVisible
 ```
 
-* ### About Cache -> [CacheUtils.java][cache.java] -> [Test][cache.test]
+* ### About CacheDisk -> [CacheDiskUtils.java][cache_disk.java] -> [Test][cache_disk.test]
+```
+getInstance
+Instance.put
+Instance.getBytes
+Instance.getString
+Instance.getJSONObject
+Instance.getJSONArray
+Instance.getBitmap
+Instance.getDrawable
+Instance.getParcelable
+Instance.getSerializable
+Instance.getCacheSize
+Instance.getCacheCount
+Instance.remove
+Instance.clear
+```
+
+* ### About CacheDouble -> [CacheDoubleUtils.java][cache_double.java] -> [Test][cache_double.test]
+```
+getInstance
+Instance.put
+Instance.getBytes
+Instance.getString
+Instance.getJSONObject
+Instance.getJSONArray
+Instance.getBitmap
+Instance.getDrawable
+Instance.getParcelable
+Instance.getSerializable
+Instance.getCacheDiskSize
+Instance.getCacheDiskCount
+Instance.getCacheMemoryCount
+Instance.remove
+Instance.clear
+```
+
+* ### About CacheMemory -> [CacheMemoryUtils.java][cache_memory.java] -> [Test][cache_memory.test]
+```
+getInstance
+Instance.put
+Instance.get
+Instance.getCacheCount
+Instance.remove
+Instance.clear
+```
+
+* ### ~~About Cache -> [CacheUtils.java][cache.java]~~
 ```
 getInstance
 Instance.put
@@ -335,6 +384,7 @@ toggleSoftInput
 isSoftInputVisible
 registerSoftInputChangedListener
 unregisterSoftInputChangedListener
+fixAndroidBug5497
 fixSoftInputLeaks
 clickBlankArea2HideSoftInput
 ```
@@ -418,6 +468,7 @@ request
 ```
 isPhone
 getDeviceId
+getSerial
 getIMEI
 getMEID
 getIMSI
@@ -561,7 +612,6 @@ setLineHeight
 setQuoteColor
 setLeadingMargin
 setBullet
-setIconMargin
 setFontSize
 setFontProportion
 setFontXProportion
@@ -619,6 +669,35 @@ toDBC
 toSBC
 ```
 
+* ### About Thread -> [ThreadUtils.java][thread.java] -> [Test][thread.test]
+```
+isMainThread
+getFixedPool
+getSinglePool
+getCachedPool
+getIoPool
+getCpuPool
+executeByFixed
+executeByFixedWithDelay
+executeByFixedAtFixRate
+executeBySingle
+executeBySingleWithDelay
+executeBySingleAtFixRate
+executeByCached
+executeByCachedWithDelay
+executeByCachedAtFixRate
+executeByIo
+executeByIoWithDelay
+executeByIoAtFixRate
+executeByCpu
+executeByCpuWithDelay
+executeByCpuAtFixRate
+executeByCustom
+executeByCustomWithDelay
+executeByCustomAtFixRate
+cancel
+```
+
 * ### About Time -> [TimeUtils.java][time.java] -> [Test][time.test]
 ```
 millis2String
@@ -666,7 +745,8 @@ cancel
 
 * ### About Uri -> [UriUtils.java][uri.java]
 ```
-getUriForFile
+file2Uri
+uri2File
 ```
 
 * ### About Zip -> [ZipUtils.java][zip.java] -> [Test][zip.test]
@@ -690,8 +770,16 @@ getComments
 [bar.java]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/main/java/com/blankj/utilcode/util/BarUtils.java
 [bar.demo]: https://github.com/Blankj/AndroidUtilCode/blob/master/app/src/main/java/com/blankj/androidutilcode/feature/core/bar/BarActivity.java
 
+[cache_disk.java]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/main/java/com/blankj/utilcode/util/CacheDiskUtils.java
+[cache_disk.test]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/test/java/com/blankj/utilcode/util/CacheDiskUtilsTest.java
+
+[cache_double.java]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/main/java/com/blankj/utilcode/util/CacheDoubleUtils.java
+[cache_double.test]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/test/java/com/blankj/utilcode/util/CacheDoubleUtilsTest.java
+
+[cache_memory.java]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/main/java/com/blankj/utilcode/util/CacheMemoryUtils.java
+[cache_memory.test]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/test/java/com/blankj/utilcode/util/CacheMemoryUtilsTest.java
+
 [cache.java]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/main/java/com/blankj/utilcode/util/CacheUtils.java
-[cache.test]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/test/java/com/blankj/utilcode/util/CacheUtilsTest.java
 
 [clean.java]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/main/java/com/blankj/utilcode/util/CleanUtils.java
 [clean.demo]: https://github.com/Blankj/AndroidUtilCode/blob/master/app/src/main/java/com/blankj/androidutilcode/feature/core/clean/CleanActivity.java
@@ -782,6 +870,9 @@ getComments
 
 [string.java]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/main/java/com/blankj/utilcode/util/StringUtils.java
 [string.test]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/test/java/com/blankj/utilcode/util/StringUtilsTest.java
+
+[thread.java]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/main/java/com/blankj/utilcode/util/ThreadUtils.java
+[thread.test]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/test/java/com/blankj/utilcode/util/ThreadUtilsTest.java
 
 [time.java]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/main/java/com/blankj/utilcode/util/TimeUtils.java
 [time.test]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/test/java/com/blankj/utilcode/util/TimeUtilsTest.java

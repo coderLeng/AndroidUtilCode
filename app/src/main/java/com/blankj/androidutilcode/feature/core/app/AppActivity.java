@@ -10,11 +10,13 @@ import android.widget.TextView;
 import com.blankj.androidutilcode.Config;
 import com.blankj.androidutilcode.R;
 import com.blankj.androidutilcode.base.BaseBackActivity;
-import com.blankj.androidutilcode.helper.AssertHelper;
 import com.blankj.androidutilcode.helper.PermissionHelper;
 import com.blankj.utilcode.util.AppUtils;
+import com.blankj.utilcode.util.FileUtils;
+import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.SpanUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.blankj.utilcode.util.Utils;
 
 /**
  * <pre>
@@ -27,6 +29,13 @@ import com.blankj.utilcode.util.ToastUtils;
 
 public class AppActivity extends BaseBackActivity {
 
+    private final OnReleasedListener listener = new OnReleasedListener() {
+        @Override
+        public void onReleased() {
+            AppUtils.installApp(Config.TEST_APK_PATH);
+        }
+    };
+
     public static void start(Context context) {
         Intent starter = new Intent(context, AppActivity.class);
         context.startActivity(starter);
@@ -34,7 +43,17 @@ public class AppActivity extends BaseBackActivity {
 
     @Override
     public void initData(@Nullable Bundle bundle) {
+        AppUtils.registerAppStatusChangedListener(this, new Utils.OnAppStatusChangedListener() {
+            @Override
+            public void onForeground() {
+                ToastUtils.showShort("foreground");
+            }
 
+            @Override
+            public void onBackground() {
+                ToastUtils.showShort("background");
+            }
+        });
     }
 
     @Override
@@ -86,12 +105,12 @@ public class AppActivity extends BaseBackActivity {
                     PermissionHelper.requestStorage(new PermissionHelper.OnPermissionGrantedListener() {
                         @Override
                         public void onPermissionGranted() {
-                            AssertHelper.releaseInstallApk(new AssertHelper.OnReleasedListener() {
-                                @Override
-                                public void onReleased() {
-                                    AppUtils.installApp(Config.TEST_APK_PATH);
-                                }
-                            });
+                            if (!FileUtils.isFileExists(Config.TEST_APK_PATH)) {
+                                new ReleaseInstallApkTask(listener).execute();
+                            } else {
+                                listener.onReleased();
+                                LogUtils.d("test apk existed.");
+                            }
                         }
                     });
                 }
@@ -138,5 +157,11 @@ public class AppActivity extends BaseBackActivity {
                 AppUtils.exitApp();
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        AppUtils.unregisterAppStatusChangedListener(this);
+        super.onDestroy();
     }
 }

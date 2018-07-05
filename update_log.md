@@ -1,3 +1,15 @@
+* 18/06/29 修复 FragmentUtils 中 getFragmentManager 空指针错误，发布 1.17.2
+* 18/06/27 新增 UriUtils#uri2File
+* 18/06/25 新增 KeyboardUtils#fixAndroidBug5497，发布 1.17.1 版本
+* 18/06/21 修复 FragmentUtils#add 死循环的 BUG
+* 18/06/14 替换 CacheUtils 为 CacheDiskUtils，CacheUtils 标记 deprecated，发布 1.17.0 版本
+* 18/06/13 新增 CacheMemoryUtils 和 CacheDoubleUtils
+* 18/06/12 完善 FragmentUtils#add 和 replace 新增 tag
+* 18/05/30 完善 DeviceUtils#getMacAddress，发布 1.16.4 版本
+* 18/05/30 修复 ToastUtils 在 targetSdkVersion 为 27 在 api 25 机器快速 show 两次崩溃的异常，发布 1.16.3 版本
+* 18/05/29 完善 TimeUtils 的 timeSpan 带符号位，ToastUtils 去除弱引用，发布 1.16.2 版本
+* 18/05/25 新增 AppUtils#registerAppStatusChangedListener 和 AppUtils#unregisterAppStatusChangedListener，发布 1.16.1 版本
+* 18/05/22 新增 ThreadUtils，发布 1.16.0 版本
 * 18/05/15 新增 MetaDataUtils 和 ActivityUtils#startActivityForResult，发布 1.15.1 版本
 * 18/05/08 新增 ResourceUtils，发布 1.15.0 版本
 * 18/05/07 修复 ZipUtils 漏洞，发布 1.14.4 版本
